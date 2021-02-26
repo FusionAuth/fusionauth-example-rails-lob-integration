@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
- helper_method :current_user
+  helper_method :current_user
   helper_method :logged_in?
 
   def current_user
@@ -12,10 +12,12 @@ class ApplicationController < ActionController::Base
         head :forbidden
         return
       end
+      return token
     end
   end
 
   def logged_in?
     current_user.present?
   end
+
 end

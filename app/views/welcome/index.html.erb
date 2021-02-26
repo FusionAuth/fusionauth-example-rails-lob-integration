@@ -1,8 +1,10 @@
 <h1>My Rails & FusionAuth App</h1>
 <% if logged_in? %>
-  Welcome <%= current_user %>.
+  Welcome <%= current_user["email"] %>.
   <br/><br/>
   Please proceed to do cool things!
+  <br/><br/>
+  <%= link_to 'Verify Your Address', verify_path %>
   <br/><br/>
   <%= link_to 'Log Out', controller: 'o_auth', action: :logout %>
 <% else %>
