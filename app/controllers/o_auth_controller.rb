@@ -44,5 +44,9 @@ class OAuthController < ApplicationController
   def login
     redirect_to @oauth_client.auth_code.authorize_url
   end
+
+  def register
+    redirect_to @oauth_client.auth_code.authorize_url.sub! 'authorize', 'register'
+  end
 end
 

@@ -6,6 +6,8 @@
   <br/><br/>
   <%= link_to 'Log Out', controller: 'o_auth', action: :logout %>
 <% else %>
-  <p>Welcome! Please <%= link_to 'sign in', controller: 'o_auth', action: :login %> </p>
+  <p>Welcome!</p>
+  <p>Please <%= link_to 'sign in', controller: 'o_auth', action: :login %> </p>
+  <p>If you don't have an account, <%= link_to 'sign up', controller: 'o_auth', action: :register %> </p>
 <% end %>
 
