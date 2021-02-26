@@ -15,7 +15,10 @@ class AddAddressFormFields < ActiveRecord::Migration[6.1]
 	}
     }
 
-    client.create_form_field(nil, addr1_req)
+    res = client.create_form_field(nil, addr1_req)
+    if res.status != 200
+      raise "did not succeed."
+    end
 
     addr2_req = { 
        "field": {
@@ -28,7 +31,10 @@ class AddAddressFormFields < ActiveRecord::Migration[6.1]
 	}
     }
 
-    client.create_form_field(nil, addr2_req)
+    res = client.create_form_field(nil, addr2_req)
+    if res.status != 200
+      raise "did not succeed."
+    end
 
     zip_req = { 
        "field": {
@@ -42,7 +48,10 @@ class AddAddressFormFields < ActiveRecord::Migration[6.1]
 	}
     }
 
-    client.create_form_field(nil, zip_req)
+    res = client.create_form_field(nil, zip_req)
+    if res.status != 200
+      raise "did not succeed."
+    end
   end
   def down
     puts "manually remove fields, please"

@@ -19,7 +19,10 @@ class AddAddressForm < ActiveRecord::Migration[6.1]
 	}
     }
 
-    client.create_form(nil, request).to_json
+    res = client.create_form(nil, request)
+    if res.status != 200
+      raise "did not succeed."
+    end
   end
   def down
     puts "please rollback manually"
