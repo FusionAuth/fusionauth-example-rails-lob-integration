@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if session[:user_jwt]
       token = session[:user_jwt]["value"].first
 
-      if token && token["email_verified"]
+      if token && token["email"]
         @email = token["email"]
       else
         head :forbidden
