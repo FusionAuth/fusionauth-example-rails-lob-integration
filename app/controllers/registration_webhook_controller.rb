@@ -25,6 +25,9 @@ class RegistrationWebhookController < ApplicationController
     street_address1 = params[:event][:user][:data][:streetaddress1]
     street_address2 = params[:event][:user][:data][:streetaddress2]
     zip_code = params[:event][:user][:data][:zipcode]
+    first_name = params[:event][:user][:firstName]
+    last_name = params[:event][:user][:lastName]
+   
     
     unless user_id && street_address1 && zip_code
       Rails.logger.warn("misconfiguration, we don't have address info")
@@ -67,11 +70,16 @@ class RegistrationWebhookController < ApplicationController
     </html>
     )
 
+    cust_name = "Future Customer"
+    if first_name && last_name
+      cust_name = first_name + " " + last_name
+    end
+
     lob = Lob::Client.new(api_key: ENV['LOB_API_KEY'], api_version: "2020-02-11")
     lob.letters.create(
       description: "Demo Letter",
       to: {
-        name: "Future Customer",
+        name: cust_name,
         address_line1: street_address1,
         address_line2: street_address2,
         address_city: city,
