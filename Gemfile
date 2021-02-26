@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'oauth2'
 gem 'ziptedu'
 gem 'fusionauth_client', '~> 1.24.0'
+gem 'lob'
 
 
 # Use Active Storage variant
