@@ -63,6 +63,20 @@ As the user, verify your account using the code
 
 View the user's data in the admin panel, you'll see verification status has changed
 
+You can also query the API for users who have not yet verified their email address:
+
+```
+API_KEY=...
+
+curl -XPOST -H "Authorization: $API_KEY" -H "Content-Type: application/json" 'http://localhost:9011/api/user/search' -d '{
+  "search": {
+    "numberOfResults": 50,
+    "query":"{\"match\":{\"data.mailingAddressVerified\":{\"query\":\"false\"}}}",
+    "startRow": 0
+  }
+}'
+```
+
 ## Next steps
 
 * Make it look good.
