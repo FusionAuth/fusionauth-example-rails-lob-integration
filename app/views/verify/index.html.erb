@@ -1,0 +1,12 @@
+<p>
+Hello, thanks for verifying your home address.
+</p>
+<p>
+Please enter your code from your letter below.
+</p>
+<%= form_with do |form| %>
+  <%= form.label :query, "Code From Letter:" %><br/>
+  <%= form.text_field :code %><br/>
+  <%= form.submit "Verify" %><br/>
+<% end %>
+
