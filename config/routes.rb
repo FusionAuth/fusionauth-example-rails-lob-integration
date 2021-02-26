@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/logout', to: 'o_auth#logout'
   get '/login', to: 'o_auth#login'
   get '/register', to: 'o_auth#register'
+  post '/registration_webhook', to: 'registration_webhook#handle_registration'
 end
