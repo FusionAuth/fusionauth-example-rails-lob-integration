@@ -1,6 +1,7 @@
 require 'lob'
 require 'fusionauth/fusionauth_client'
-  
+ 
+# TODO offload this to an async job 
 
 class RegistrationWebhookController < ApplicationController
   skip_before_action :verify_authenticity_token
