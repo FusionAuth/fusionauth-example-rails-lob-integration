@@ -20,8 +20,10 @@ class OAuthController < ApplicationController
     begin
       decoded = TokenDecoder.new(token, @oauth_client.id).decode
     rescue Exception => error
-      "An unexpected exception occurred: #{error.inspect}"
-      head :forbidden
+      Rails.logger.warn("An unexpected exception occurred: #{error.inspect}")
+      session[:user_jwt] = nil
+
+      redirect_to root_path
       return
     end
 
@@ -33,12 +35,11 @@ class OAuthController < ApplicationController
 
   def logout
     # Invalidate session with FusionAuth
-    @oauth_client.request(:get, 'oauth2/logout')
 
     # Reset Rails session
     reset_session
 
-    redirect_to root_path
+    redirect_to Rails.configuration.x.oauth.idp_url+"oauth2/logout?client_id="+Rails.configuration.x.oauth.client_id
   end
 
   def login
