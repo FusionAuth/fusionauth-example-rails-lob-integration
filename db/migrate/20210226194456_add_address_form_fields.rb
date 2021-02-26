@@ -2,7 +2,7 @@ require 'fusionauth/fusionauth_client'
 
 class AddAddressFormFields < ActiveRecord::Migration[6.1]
   def up
-    client = FusionAuth::FusionAuthClient.new(ENV['API_KEY'], Rails.configuration.x.oauth.idp_url)
+    client = FusionAuth::FusionAuthClient.new(ENV['FA_API_KEY'], Rails.configuration.x.oauth.idp_url)
 
     addr1_req = { 
        "field": {
